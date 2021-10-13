@@ -14,7 +14,5 @@ export default function useData() {
       .finally(() => setLoading(false));
   }, []);
 
-  console.log('vehicles', vehicles);
-
   return [loading, error, vehicles];
 }

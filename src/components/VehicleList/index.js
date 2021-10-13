@@ -21,7 +21,7 @@ export default function VehicleList() {
       <h1>Premium Vehicles</h1>
 
       {vehicles.map((vehicle) => (
-        <div>
+        <div key={vehicle.id}>
           <img
             src="https://source.unsplash.com/random"
             alt="placeholder"

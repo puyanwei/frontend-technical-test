@@ -7,10 +7,9 @@ import { request } from './helpers';
  * @return {Promise<Array.<vehicleSummaryPayload>>}
  */
 // TODO: All API related logic should be made inside this function.
-export default async function getData() {
+const getData = async () => {
   return new Promise((resolve, reject) => {
     let objectOfApiUrl = [];
-    let OG = [];
     let successfulResponses = 0;
 
     request('/api/vehicles.json')
@@ -18,8 +17,9 @@ export default async function getData() {
       .then((data) => {
         data.forEach(({ apiUrl }) => {
           return request(apiUrl).then((response) => {
-            // eslint-disable-next-line no-plusplus
-            if (response.status !== 404) successfulResponses++;
+            if (response.status !== 404) {
+              successfulResponses += 1;
+            }
           });
         });
       });
@@ -30,10 +30,7 @@ export default async function getData() {
         data.forEach(({ apiUrl }) => {
           return request(apiUrl)
             .then((response) => {
-              if (response.status === 404) {
-                return {};
-              }
-              return response.json();
+              return response.status === 404 ? {} : response.json();
             })
             .then((successfulResponse) => {
               if (Object.keys(successfulResponse).length !== 0) {
@@ -41,21 +38,25 @@ export default async function getData() {
               }
             })
             .then(() => {
-              let newTing = [];
-              OG = data;
-              let newData = [];
-              OG.forEach((el, OGIndex) => {
+              let vehicleJsonCombined = [];
+              data.forEach((el, dataIndex) => {
                 objectOfApiUrl.forEach((objectOfApiUrlEl) => {
                   if (el.id === objectOfApiUrlEl.id) {
-                    newData = { ...OG[OGIndex], details: objectOfApiUrlEl };
-                    newTing = [...newTing, newData];
+                    vehicleJsonCombined = [
+                      { ...data[dataIndex], details: objectOfApiUrlEl },
+                      ...vehicleJsonCombined,
+                    ];
                   }
                 });
               });
-              if (newTing.length === successfulResponses) resolve(newTing);
+              if (vehicleJsonCombined.length === successfulResponses) {
+                resolve(vehicleJsonCombined);
+              }
             })
             .catch((err) => reject(err));
         });
       });
   });
-}
+};
+
+export default getData;
