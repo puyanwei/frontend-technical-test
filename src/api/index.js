@@ -8,5 +8,5 @@ import { request } from './helpers';
  */
 // TODO: All API related logic should be made inside this function.
 export default async function getData() {
-  return [];
+  return request('/api/vehicles.json');
 }

@@ -6,12 +6,14 @@ export default function VehicleList() {
   // eslint-disable-next-line no-unused-vars
   const [loading, error, vehicles] = useData();
 
+  console.log('vehicles', vehicles);
+
   if (loading) {
     return <div data-testid="loading">Loading</div>;
   }
 
   if (error) {
-    return <div data-testid="error">{ error }</div>;
+    return <div data-testid="error">{error}</div>;
   }
 
   return (
@@ -19,20 +21,24 @@ export default function VehicleList() {
       <p>List of vehicles will be displayed here</p>
       <p>
         Visit
-        <a href="/api/vehicles.json" target="_blank"> /api/vehicles.json</a>
-        {' '}
+        <a href="/api/vehicles.json" target="_blank">
+          {' '}
+          /api/vehicles.json
+        </a>{' '}
         (main endpoint)
       </p>
       <p>
         Visit
-        <a href="/api/vehicle_fpace.json" target="_blank">/api/vehicle_fpace.json</a>
-        {' '}
+        <a href="/api/vehicle_fpace.json" target="_blank">
+          /api/vehicle_fpace.json
+        </a>{' '}
         (detail endpoint - apiUrl)
       </p>
       <p>
         Visit
-        <a href="/api/vehicle_xf.json" target="_blank">/api/vehicle_xf.json</a>
-        {' '}
+        <a href="/api/vehicle_xf.json" target="_blank">
+          /api/vehicle_xf.json
+        </a>{' '}
         (vehicle without any price)
       </p>
     </div>
