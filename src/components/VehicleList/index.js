@@ -6,8 +6,6 @@ export default function VehicleList() {
   // eslint-disable-next-line no-unused-vars
   const [loading, error, vehicles] = useData();
 
-  console.log('vehicles', vehicles);
-
   if (loading) {
     return <div data-testid="loading">Loading</div>;
   }
@@ -16,31 +14,25 @@ export default function VehicleList() {
     return <div data-testid="error">{error}</div>;
   }
 
+  // console.log('vehiclesDetailed', vehiclesDetailed);
+
   return (
-    <div data-testid="results">
-      <p>List of vehicles will be displayed here</p>
-      <p>
-        Visit
-        <a href="/api/vehicles.json" target="_blank">
-          {' '}
-          /api/vehicles.json
-        </a>{' '}
-        (main endpoint)
-      </p>
-      <p>
-        Visit
-        <a href="/api/vehicle_fpace.json" target="_blank">
-          /api/vehicle_fpace.json
-        </a>{' '}
-        (detail endpoint - apiUrl)
-      </p>
-      <p>
-        Visit
-        <a href="/api/vehicle_xf.json" target="_blank">
-          /api/vehicle_xf.json
-        </a>{' '}
-        (vehicle without any price)
-      </p>
+    <div className="vehicle-list" data-testid="results">
+      <h1>Premium Vehicles</h1>
+
+      {vehicles.map((vehicle) => (
+        <div>
+          <img
+            src="https://source.unsplash.com/random"
+            alt="placeholder"
+            height="100px"
+            width="100px"
+          />
+          <h3>{vehicle.id}</h3>
+          <p>From £76,350</p>
+          <p>The pinncale of refined capability</p>
+        </div>
+      ))}
     </div>
   );
 }

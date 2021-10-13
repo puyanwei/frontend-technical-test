@@ -8,11 +8,13 @@ export default function useData() {
 
   useEffect(() => {
     getData()
-      .then((response) => response.json())
+      .then((response) => response)
       .then((data) => setVehicles(data))
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
   }, []);
+
+  console.log('vehicles', vehicles);
 
   return [loading, error, vehicles];
 }
