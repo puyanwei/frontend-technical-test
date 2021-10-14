@@ -1,3 +1,57 @@
 .vehicle-list {
   width: 100%;
+  .vehicle-container {
+    border-bottom: 1px solid lightgray;
+    .vehicle-img {
+      object-fit: contain;
+      width: auto;
+      height: auto;
+    }
+    .vehicle-details {
+      margin:0 1rem;
+      .vehicle-name {
+        margin-bottom: 0.5rem;
+      }
+      .price {
+        margin-top: 0.5rem;
+        font-weight: bold;
+
+      }
+    }
+  }
 }
+
+@media screen and (min-width: 0) {
+  .vehicle-list {
+    .vehicle-container {
+      display: flex;
+      justify-content: flex-start;
+      .vehicle-img {
+        max-width: 150px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .vehicle-list {
+    display: flex;
+    background-color: red;
+    flex-wrap: wrap;
+    .vehicle-container {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 50%;
+      .vehicle-img {
+        max-width: 300px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .vehicle-list {
+    background-color: blue;
+  }
+}
+

@@ -14,25 +14,29 @@ export default function VehicleList() {
     return <div data-testid="error">{error}</div>;
   }
 
-  // console.log('vehiclesDetailed', vehiclesDetailed);
-
   return (
     <div className="vehicle-list" data-testid="results">
-      <h1>Premium Vehicles</h1>
 
-      {vehicles.map((vehicle) => (
-        <div key={vehicle.id}>
+      {vehicles.map(
+        ({ id, media, details: { price, description } }) => price && (
+        <div className="vehicle-container" key={id}>
           <img
-            src="https://source.unsplash.com/random"
-            alt="placeholder"
-            height="100px"
-            width="100px"
+            className="vehicle-img"
+            src={(window.innerWidth < 768) ? media[1].url : media[0].url}
+            alt={`${id} vehicle`}
           />
-          <h3>{vehicle.id}</h3>
-          <p>From £76,350</p>
-          <p>The pinncale of refined capability</p>
+          <div className="vehicle-details">
+            <h2 className="vehicle-name uppercase">{id}</h2>
+            <p className="price">
+              From
+              {' '}
+              {price}
+            </p>
+            <p>{description}</p>
+          </div>
         </div>
-      ))}
+        )
+      )}
     </div>
   );
 }
