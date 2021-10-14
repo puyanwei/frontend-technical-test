@@ -9,16 +9,16 @@ import { request } from './helpers';
 // TODO: All API related logic should be made inside this function.
 const getData = async () => {
   return new Promise((resolve, reject) => {
-    let objectOfApiUrl = [];
-    let successfulResponses = 0;
+    let apiUrlsObject = [];
+    let successfulResponseCount = 0;
 
     request('/api/vehicles.json')
       .then((response) => response.json())
-      .then((data) => {
-        data.forEach(({ apiUrl }) => {
+      .then((parentJson) => {
+        parentJson.forEach(({ apiUrl }) => {
           return request(apiUrl).then((response) => {
             if (response.status !== 404) {
-              successfulResponses += 1;
+              successfulResponseCount += 1;
             }
           });
         });
@@ -26,30 +26,33 @@ const getData = async () => {
 
     request('/api/vehicles.json')
       .then((response) => response.json())
-      .then((data) => {
-        data.forEach(({ apiUrl }) => {
+      .then((parentJson) => {
+        parentJson.forEach(({ apiUrl }) => {
           return request(apiUrl)
             .then((response) => {
               return response.status === 404 ? {} : response.json();
             })
-            .then((successfulResponse) => {
-              if (Object.keys(successfulResponse).length !== 0) {
-                objectOfApiUrl = [...objectOfApiUrl, successfulResponse];
+            .then((childJson) => {
+              if (Object.keys(childJson).length !== 0) {
+                apiUrlsObject = [...apiUrlsObject, childJson];
               }
             })
             .then(() => {
               let vehicleJsonCombined = [];
-              data.forEach((el, dataIndex) => {
-                objectOfApiUrl.forEach((objectOfApiUrlEl) => {
-                  if (el.id === objectOfApiUrlEl.id) {
+              parentJson.forEach((parentElement, parentJsonIndex) => {
+                apiUrlsObject.forEach((apiUrlsObjectElement) => {
+                  if (parentElement.id === apiUrlsObjectElement.id) {
                     vehicleJsonCombined = [
-                      { ...data[dataIndex], details: objectOfApiUrlEl },
+                      {
+                        ...parentJson[parentJsonIndex],
+                        details: apiUrlsObjectElement,
+                      },
                       ...vehicleJsonCombined,
                     ];
                   }
                 });
               });
-              if (vehicleJsonCombined.length === successfulResponses) {
+              if (vehicleJsonCombined.length === successfulResponseCount) {
                 resolve(vehicleJsonCombined);
               }
             })
