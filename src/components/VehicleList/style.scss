@@ -30,6 +30,7 @@
 
   .vehicle-list {
     font-size: 10pt;
+
     .vehicle-container:first-child {
       margin: 0;
     }
@@ -38,11 +39,14 @@
       display: flex;
       justify-content: flex-start;
       margin-top: 1px;
+
       .vehicle-details {
-      .vehicle-name {
+
+        .vehicle-name {
           margin: 1rem 0;
         }
-      .vehicle-price {
+
+        .vehicle-price {
           margin: 0;
         }
       }
@@ -57,9 +61,9 @@
 @media screen and (min-width: 768px) {
 
   .vehicle-list {
-    font-size: 14pt;
     display: flex;
     flex-wrap: wrap;
+    font-size: 14pt;
 
     .vehicle-container {
       display: flex;
@@ -71,7 +75,8 @@
         max-width: 100%;
       }
       
-      .vehicle-details{
+      .vehicle-details {
+
         .vehicle-price {
           font-size: 12pt;
         }
@@ -86,6 +91,7 @@
           text-decoration: underline overline;
           text-underline-offset: 4px;
         }
+
         .vehicle-description {
           font-size: 10pt;
         }

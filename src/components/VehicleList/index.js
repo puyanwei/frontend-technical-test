@@ -16,9 +16,8 @@ export default function VehicleList() {
 
   return (
     <div className="vehicle-list" data-testid="results">
-
       {vehicles.map(
-        ({ id, media, details: { price, description } }) => price && (
+        ({ id, media, details }) => details?.price && (
         <div className="vehicle-container" key={id}>
           <img
             className="vehicle-img"
@@ -28,9 +27,9 @@ export default function VehicleList() {
           <div className="vehicle-details">
             <h2 className="vehicle-name uppercase">{id}</h2>
             <p className="vehicle-price">
-              {`From ${price}`}
+              {`From ${details.price}`}
             </p>
-            <p className="vehicle-description">{description}</p>
+            <p className="vehicle-description">{details.description}</p>
           </div>
         </div>
         )
