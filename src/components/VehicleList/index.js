@@ -27,10 +27,10 @@ export default function VehicleList() {
           />
           <div className="vehicle-details">
             <h2 className="vehicle-name uppercase">{id}</h2>
-            <p className="price">
+            <p className="vehicle-price">
               {`From ${price}`}
             </p>
-            <p>{description}</p>
+            <p className="vehicle-description">{description}</p>
           </div>
         </div>
         )
