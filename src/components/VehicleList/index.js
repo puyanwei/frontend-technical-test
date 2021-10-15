@@ -3,7 +3,6 @@ import useData from './useData';
 import './style.scss';
 
 export default function VehicleList() {
-  // eslint-disable-next-line no-unused-vars
   const [loading, error, vehicles] = useData();
 
   if (loading) {
@@ -17,7 +16,7 @@ export default function VehicleList() {
   return (
     <div className="vehicle-list" data-testid="results">
       {vehicles.map(
-        ({ id, media, details }) => details?.price && (
+        ({ id, media, details }) => details && details.price && (
         <div className="vehicle-container" key={id}>
           <img
             className="vehicle-img"
