@@ -1,68 +1,40 @@
-Frontend Technical Test for [TeamITG](https://teamitg.com/)
+# Vehicle Showroom
 
-## System requirements
-You’ll want to ensure you have the following already installed on your local machine before getting started with the test:
-* **Node 12+:** The current LTS (long-term support) release. We like to use a [Node Version Manager like NVM](https://github.com/nvm-sh/nvm).
-* **NPM 6+ or Yarn:** Both of these package managers have ups and downs, choose whichever you prefer. Follow the installation instructions for Yarn or NPM to make sure you're using the latest version.
+This app displays vehicle information for cars that are available for sale.
 
-## Setup Instructions
-1. Clone this repository
-2. Type the following command to install the dependencies and run the project
-````
-npm install && npm start
-````
+Desktop view
 
-## Task Instructions
-1. API Implementation
-    * You will receive a list of general vehicle information by making an initial api request to endpoint `/api/vehicles.json`
-    * You are now required to traverse the API and make further calls on a detail endpoint (`apiUrl`) to get vehicle-specific details such as price and description
-    * Ignore vehicles with broken apiUrl or without any price information
-    * All API related logic should be implemented inside `getData()` available at `src/api/index.js`
+![desktop](https://user-images.githubusercontent.com/14803518/137533655-ab8b319d-3d8c-4ac3-bd22-19b80a4786fb.png)
 
-2. Using `getData()` in a React component
-    * React component `VehicleList` is configured to use `getData()` through a custom hook `useData`
-    * If you prefer to use class-based component, then the rule to make a single function to obtain all vehicles through `getData()` needs to be respected
-    * No other components are allowed to make any network request
+Tablet view
 
-3. UI Design
-    * You are required to produce the following designs on different viewports to match as closely as possible, ready for a designer to review
-    * [Mobile](https://raw.githubusercontent.com/connect-group/frontend-technical-test/master/designs/mobile.png)
-    * [Tablet](https://raw.githubusercontent.com/connect-group/frontend-technical-test/master/designs/tablet.png)
-    * [Desktop](https://raw.githubusercontent.com/connect-group/frontend-technical-test/master/designs/desktop.png)
+![tablet](https://user-images.githubusercontent.com/14803518/137533657-d09bceea-c04b-4bc4-87c7-87be4f5b5288.png)
 
-## Browser Support
-We expect the solution to work in the latest version of Chrome
+Mobile view
 
-## Acceptance criteria
+![mobile](https://user-images.githubusercontent.com/14803518/137533653-2e3da32a-7447-4b18-b94b-76f50c06ed6a.png)
 
-**We have a high focus on attention to details in code**
-* Solution should be written in either Reactjs or VanillaJS
-* The formatting of the codebase should be consistent and written in a modular approach
-* We expect the codebase to be written using ES6+ and libraries kept to a minimum
-* We expect the code to be written with unit testing & performance in mind
-* We expect the code to be included in the relevant files
-* We prefer native Browser Api over JS libraries
-* Mobile-first development approach using min-width media queries
-* Solution should be accessible and meet WCAG 2.1
-* No CSS framework allowed
-* Internally, we use BEM - but we are open to other CSS naming conventions as long as it's built with scale and maintenance in mind
 
-**We have a high focus on attention to details in design**
-* We expect the designs to match as closely as possible, ready for a designer to review
-* Correct semantic HTML mark-up and/or CSS should be used to achieve the size and aspect ratio of the images in the design
-* Interactions and animations to be considered but not distracting users away from the experience
-* Minimal visual bugs when going resizing to mobile and large screen sizes
+## Planning
 
-## Nice to have
-If you have achieved primary tasks and would like to showcase your skills by implementing additional feature(s) then you can consider the following:
-- An [accessible modal implementation](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal) which displays the additional vehicle information e.g. emission, bodystyle
-- Implement "Read more" which Show/Hide additional vehicle information
-- A staggered fade in vehicle cards on load
-- Redux
-- Anything else which we cannot think of!
+I approached this task by spending some time to plan out the details and work out which order would be best to do them in.
 
-## Tips
-Use linting to format the code and autofix most of the formatting issues
-```shell script
-npm run lint
-```
+![1](https://user-images.githubusercontent.com/14803518/137533219-4a2628f1-1411-4863-a90d-0c461f580feb.jpg)
+
+One of the first things I did was to pull in the data from the API to see the data structure in the console. I noticed that within the initial API, it contained other API urls in the array of objects for each specific car which pulled in more details about it.
+
+I decided that the best approach would be to loop through all of them, fetch their data and then create a new object which nested that information to the original JSON hash so that all the information was available in `vehicles` for the page to use.
+
+After that I was able to build out the page mobile first, and move on to larger sizes.
+
+## Hurdles
+
+It was challenging in dealing with so many objects, nesting promises and making sure the correct data was being passed down, as well as making sure the new final object to be used for `vehicles` made sense. My approach was to break things down into smaller stages and slowly build them up to the desired result.
+
+Testing was an interesting challenge as I had not used Jest before, and working out I had to create a copy of the mocked data by following the error messages given out.
+
+## Future Improvements
+
+Apologies for being unable to complete the extra tasks of adding extra info to a modal after clicking a read more button. I am currently being overwhelmed by multiple tech tests so I have trying to divide up my time efficiently.
+
+I look forward to the feedback.
