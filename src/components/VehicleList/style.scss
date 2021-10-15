@@ -1,20 +1,25 @@
 .vehicle-list {
   width: 100%;
+
   .vehicle-container {
     outline: 1px solid lightgray;
+
     .vehicle-img {
+      height: auto;
       object-fit: contain;
       width: auto;
-      height: auto;
     }
+
     .vehicle-details {
-      margin:0 1rem;
+      margin: 0 1rem;
+
       .vehicle-name {
-        margin-bottom: 0.5rem;
+        margin-bottom: .5rem;
       }
+
       .price {
-        margin-top: 0.5rem;
         font-weight: bold;
+        margin-top: .5rem;
 
       }
     }
@@ -22,14 +27,18 @@
 }
 
 @media screen and (min-width: 0) {
+
   .vehicle-list {
+
     .vehicle-container:first-child {
       margin: 0;
     }
+
     .vehicle-container {
       display: flex;
       justify-content: flex-start;
       margin-top: 1px;
+
       .vehicle-img {
         max-width: 150px;
       }
@@ -38,23 +47,35 @@
 }
 
 @media screen and (min-width: 768px) {
+
   .vehicle-list {
     display: flex;
     flex-wrap: wrap;
+
     .vehicle-container {
       display: flex;
-      flex-direction: column;
       flex-basis: 50%;
+      flex-direction: column;
       outline: 1px solid lightgray;
 
       .vehicle-img {
-        max-width: 300px;
+        max-width: 100%;
+      }
+
+      .vehicle-details {
+        text-align: center;
+
+        .vehicle-name {
+          text-decoration: underline overline;
+          text-underline-offset: 2px;
+        }
       }
     }
   }
 }
 
 @media screen and (min-width: 1024px) {
+
   .vehicle-list {
     background-color: blue;
   }

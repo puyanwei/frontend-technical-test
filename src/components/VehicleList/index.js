@@ -28,9 +28,7 @@ export default function VehicleList() {
           <div className="vehicle-details">
             <h2 className="vehicle-name uppercase">{id}</h2>
             <p className="price">
-              From
-              {' '}
-              {price}
+              {`From ${price}`}
             </p>
             <p>{description}</p>
           </div>
