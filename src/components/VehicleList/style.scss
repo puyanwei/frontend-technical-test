@@ -1,7 +1,7 @@
 .vehicle-list {
   width: 100%;
   .vehicle-container {
-    border-bottom: 1px solid lightgray;
+    outline: 1px solid lightgray;
     .vehicle-img {
       object-fit: contain;
       width: auto;
@@ -23,9 +23,13 @@
 
 @media screen and (min-width: 0) {
   .vehicle-list {
+    .vehicle-container:first-child {
+      margin: 0;
+    }
     .vehicle-container {
       display: flex;
       justify-content: flex-start;
+      margin-top: 1px;
       .vehicle-img {
         max-width: 150px;
       }
@@ -36,12 +40,13 @@
 @media screen and (min-width: 768px) {
   .vehicle-list {
     display: flex;
-    background-color: red;
     flex-wrap: wrap;
     .vehicle-container {
       display: flex;
       flex-direction: column;
       flex-basis: 50%;
+      outline: 1px solid lightgray;
+
       .vehicle-img {
         max-width: 300px;
       }
