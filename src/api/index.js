@@ -7,6 +7,44 @@ import { request } from './helpers';
  * @return {Promise<Array.<vehicleSummaryPayload>>}
  */
 // TODO: All API related logic should be made inside this function.
+
+async function getDataNew() {
+  const vehicleIdsRes = await request('/api/vehicles.json')
+  const vehicleIds = await vehicleIdsRes.toJson()
+  
+  const vehicleMoreInfoApiUrls = vehicleIds.map(v => v.apiUrl)
+  const vehicleInfo = await Promise.all(vehicleMoreInfoApiUrls.map(async url => await (await request(url)).toJson()))
+
+  const [vechicleInfo, successfulResponseCount] = vehicleMoreInfoApiUrls.reduce(async (url, [arr, total]) => {
+    const fullInfoRes = await request(url)
+    const fullInfo = await fullInfoRes.toJson()
+    return [[...arr, fullInfo], total + 1]
+  }, [[], 0])
+
+  return array
+}
+
+
+const fruit = [{name: "apple", price: 1000, quantity: 15}, {name: "banana", price: 23123, quantity: 10  }]
+
+const basketTotal = fruit.reduce((total, item) => {
+  return total + item.price * item.quantity
+}, 0)
+
+
+const basketTotal = fruit.reduce(async (promise, fruitUrl) => {
+  promise.then(res => {
+    //
+  })
+
+  const fruitPromise = request(fruitUrl).then(res => /* do something */ )
+  return [fruitPromise]
+  
+}, Promise.resolve())
+
+console.log(basketTotal)
+
+
 const getData = async () => {
   return new Promise((resolve, reject) => {
     let apiUrlsObject = [];
